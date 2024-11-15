@@ -2,22 +2,29 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
-            agent{
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    // Clean npm cache to avoid corrupted files
+                    sh 'npm cache clean --force'
+                    // Install dependencies (use npm ci if using lock files)
+                    sh 'npm install'  // or 'npm ci' if you have package-lock.json
                 }
             }
+        }
+
+        stage('Build') {
             steps {
-                sh'''
-                ls -la
-                node --version
-                npm --version
-                npm run build
-                npm ci
-                ls -la
-                '''
+                script {
+                    // Run the build
+                    sh 'npm run build'
+                }
             }
         }
     }
