@@ -24,6 +24,12 @@ stages{
     }
 
     }
+        stage('Test') {
+            steps {
+                echo 'Test Stage'
+            }
+
+        }
 }
 
 }
