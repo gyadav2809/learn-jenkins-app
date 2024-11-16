@@ -33,6 +33,7 @@ stages{
             steps {
                  
                   sh  'test -f public/index.html'
+                  npm test
                 
             }
 
