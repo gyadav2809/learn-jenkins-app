@@ -32,7 +32,7 @@ stages{
     }
             steps {
                  
-                  sh  'test -f build/index.html'
+                  sh  'test -f public/index.html'
                 
             }
 
