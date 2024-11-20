@@ -14,7 +14,8 @@ stages{
     }
     steps {
         sh '''
-            ls -la
+            # Listing the all files in the directory
+	    ls -la
             node --version
             npm --version
             ls -la
